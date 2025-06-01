@@ -100,3 +100,106 @@ Upon successful execution of the script, the following will be observed in the o
 *   **Library Installation:** If you are not using Google Colab, ensure all necessary libraries are installed in your Python environment using the provided `pip` command.
 *   **Plotly in Colab:** While Plotly is generally well-supported in Colab, occasional issues with interactive plot rendering can occur. If the 3D plot does not display correctly, ensure your Colab session is healthy and try re-running the cell.
 *   **Google Drive Mounting Issues:** Ensure you successfully complete the Google Drive authentication and mounting process when prompted.
+
+
+Flowchart Description for Task 1: Function Mapping and Data Validation
+This flowchart outlines the execution flow of the Task 1 script.
+
+    A[Start] --> B{Mount Google Drive?};
+    B -- Yes --> C[Mount Google Drive];
+    B -- No --> D[Proceed without mounting]; % Assuming local files are used, although the code currently expects Drive
+    C --> E[Initialize DataHandler <br/> (Load ideal.csv, train.csv)];
+    D --> E;
+    E --> F{Data Loading Successful?};
+    F -- No --> G[Handle Loading Errors <br/> (e.g., File Not Found, Empty)];
+    G --> H[End with Error];
+    F -- Yes --> I[Get Best Fit Functions];
+    I --> J{Best Fit Calculation Successful?};
+    J -- No --> K[Handle Best Fit Errors];
+    K --> H;
+    J -- Yes --> L[Plot Ideal Data <br/> (Bokeh)];
+    L --> M[Plot Training Data <br/> (Bokeh)];
+    M --> N[Plot Best Fit <br/> (Bokeh)];
+    N --> O[Validate Test Data <br/> (Load test.csv, check points)];
+    O --> P{Test Data Validation Successful?};
+    P -- No --> Q[Handle Validation Errors];
+    Q --> H;
+    P -- Yes --> R[Run Unit Tests <br/> (TestDatasetIntegrity)];
+    R --> S{Unit Tests Pass?};
+    S -- No --> T[Report Unit Test Failures];
+    T --> U[End];
+    S -- Yes --> U;
+    H --> U;
+Use code with caution
+Explanation of Nodes:
+
+A [Start]: The beginning of the program execution.
+B {Mount Google Drive?}: A decision point checking if Google Drive needs to be mounted (as is the case in the provided code).
+C [Mount Google Drive]: The process of connecting to Google Drive.
+D [Proceed without mounting]: An alternative path if data is assumed to be local (less relevant for the provided Colab code).
+E [Initialize DataHandler (Load ideal.csv, train.csv)]: Creating an instance of the DataHandler class, which involves reading the ideal and training CSV files.
+F {Data Loading Successful?}: A decision point checking if the data loading process encountered any errors.
+G [Handle Loading Errors (e.g., File Not Found, Empty)]: The process of catching and reporting errors during data loading.
+H [End with Error]: The program terminates due to a critical error.
+I [Get Best Fit Functions]: Calculating the best-fit ideal function for each training column.
+J {Best Fit Calculation Successful?}: A decision point checking if the best fit calculation completed without errors.
+K [Handle Best Fit Errors]: The process of catching and reporting errors during best fit calculation.
+L [Plot Ideal Data (Bokeh)]: Generating the visualization for the ideal functions.
+M [Plot Training Data (Bokeh)]: Generating the visualization for the training data.
+N [Plot Best Fit (Bokeh)]: Generating the visualization showing the training data and their best-fit ideal functions.
+O [Validate Test Data (Load test.csv, check points)]: Loading the test dataset and validating each point against the best-fit functions.
+P {Test Data Validation Successful?}: A decision point checking if the test data validation completed without errors.
+Q [Handle Validation Errors]: The process of catching and reporting errors during test data validation.
+R [Run Unit Tests (TestDatasetIntegrity)]: Executing the unit tests for data integrity.
+S {Unit Tests Pass?}: A decision point checking if all unit tests passed.
+T [Report Unit Test Failures]: Reporting which unit tests failed.
+U [End]: The program finishes execution.
+Flowchart Description for Task 2: Nanofluid Heat Transfer Dataset Analysis
+This flowchart outlines the execution flow of the Task 2 script.
+
+    A[Start] --> B{Mount Google Drive?};
+    B -- Yes --> C[Mount Google Drive];
+    B -- No --> D[Proceed without mounting]; % Less relevant for provided Colab code
+    C --> E[Load Data <br/> (nanofluid_heat_transfer_dataset.csv)];
+    D --> E;
+    E --> F{Data Loaded Successfully?};
+    F -- No --> G[Handle Data Loading Errors];
+    G --> H[End with Error];
+    F -- Yes --> I[Preprocess Data <br/> (Select Numeric Columns)];
+    I --> J[Run Unit Tests <br/> (TestNanofluidDataset)];
+    J --> K{Unit Tests Pass?};
+    K -- No --> L[Report Unit Test Failures];
+    L --> M[End];
+    K -- Yes --> N[Plot Heatmap];
+    N --> O[Plot Bokeh Scatter Plot];
+    O --> P[Plot Histogram];
+    P --> Q[Plot Bar Plot];
+    Q --> R[Plot Box Plot];
+    R --> S[Plot Plotly 3D Scatter Plot];
+    S --> T[Print Success Message];
+    T --> M;
+    H --> M;
+Use code with caution
+Explanation of Nodes:
+
+A [Start]: The beginning of the program execution.
+B {Mount Google Drive?}: A decision point checking if Google Drive needs to be mounted.
+C [Mount Google Drive]: The process of connecting to Google Drive.
+D [Proceed without mounting]: An alternative path if data is assumed to be local.
+E [Load Data (nanofluid_heat_transfer_dataset.csv)]: Calling the load_data function to read the CSV file into a DataFrame.
+F {Data Loaded Successfully?}: A decision point checking if the data loading process was successful.
+G [Handle Data Loading Errors]: The process of handling potential errors during data loading.
+H [End with Error]: The program terminates due to a critical error.
+I [Preprocess Data (Select Numeric Columns)]: Calling the preprocess_data function to keep only numeric columns.
+J [Run Unit Tests (TestNanofluidDataset)]: Executing the unit tests defined in the TestNanofluidDataset class.
+K {Unit Tests Pass?}: A decision point checking if all unit tests passed.
+L [Report Unit Test Failures]: Reporting which unit tests failed.
+M [End]: The program finishes execution.
+N [Plot Heatmap]: Generating the heatmap visualization.
+O [Plot Bokeh Scatter Plot]: Generating the Bokeh scatter plot.
+P [Plot Histogram]: Generating the histogram.
+Q [Plot Bar Plot]: Generating the bar chart.
+R [Plot Box Plot]: Generating the box plot.
+S [Plot Plotly 3D Scatter Plot]: Generating the interactive 3D scatter plot.
+T [Print Success Message]: Printing a confirmation message indicating successful execution.
+You can use these descriptions to create visual flowcharts using online tools or drawing software.
